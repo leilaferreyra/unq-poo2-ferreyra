@@ -2,41 +2,57 @@ package ar.edu.unq.poo2.tp2;
 import java.time.LocalDate;
 
 public class EmpleadoPermanente extends Empleado {
-    int cantHijos;
-    int antiguedad;
-    public EmpleadoPermanente(String _nombre, String _direccion, Boolean _tieneConyugue, LocalDate _fechaDeNacimiento, Double _sueldoBasico, int _cantHijos, int _antiguedad) {
-        super(_nombre,_direccion,_tieneConyugue,_fechaDeNacimiento,_sueldoBasico);
+    private int cantHijos;
+    private int antiguedad;
+
+    public EmpleadoPermanente(String _nombre, String _direccion, Boolean _tieneConyugue, LocalDate _fechaDeNacimiento, double _sueldoBasico, int _cantHijos, int _antiguedad) {
+        super(_nombre, _direccion, _tieneConyugue, _fechaDeNacimiento, _sueldoBasico);
         this.cantHijos = _cantHijos;
         this.antiguedad = _antiguedad;
     }
+
     //sueldo bruto
     @Override
-    public double sueldoBruto(){
-        return sueldoBasico+sueldoFamiliar()+extraAntiguedad();
+    public double sueldoBruto() {
+        return getSueldoBasico() + sueldoFamiliar() + extraAntiguedad();
     }
-    private int sueldoFamiliar(){
+
+    private double sueldoFamiliar() {
         return asignacionPorHijo() + asignacionPorConyugue();
     }
-    private int asignacionPorHijo(){
-        return 150*cantHijos;
+
+    private double asignacionPorHijo() {
+        return 150 * cantHijos;
     }
-    private int asignacionPorConyugue(){
-        return tieneConyugue? 100:0;
+
+    private double asignacionPorConyugue() {
+        return getTieneConyugue() ? 100 : 0;
     }
-    private int extraAntiguedad(){
-        return 50*antiguedad;
+
+    private double extraAntiguedad() {
+        return 50 * antiguedad;
     }
+
     //retenciones
     @Override
-    public double retenciones(){
-        return obraSocial()+ aportesJubilatorios();
+    protected double retencionObraSocial() {
+        return super.retencionObraSocial() + 20 * cantHijos;
     }
+
     @Override
-    protected double obraSocial(){
-        return super.obraSocial() + 20 * cantHijos;
+    protected double retencionAportesJubilatorios() {
+        return sueldoBruto() % 15;
     }
+
     @Override
-    protected double aportesJubilatorios(){
-        return sueldoBruto()%15;
+    protected void generarDesgloceDeConceptos() {
+        getConceptos().add(new Concepto("Sueldo Basico", getSueldoBasico()));
+        getConceptos().add(new Concepto("Sueldo Familiar", sueldoFamiliar()));
+        getConceptos().add(new Concepto("Asignacion por hijo", asignacionPorHijo()));
+        getConceptos().add(new Concepto("Asignacion por conyugue", asignacionPorConyugue()));
+        getConceptos().add(new Concepto("Antiguedad", extraAntiguedad()));
+        getConceptos().add(new Concepto("Descuento obra social", retencionObraSocial()));
+        getConceptos().add(new Concepto("Descuento aportes jubilatorios", retencionAportesJubilatorios()));
     }
 }
+
