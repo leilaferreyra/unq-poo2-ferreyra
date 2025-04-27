@@ -8,6 +8,7 @@ public class ReciboHaberes {
     LocalDate fechaEmision;
     double sueldoBruto;
     double sueldoNeto;
+   
     List<Concepto> desgloceConceptos;
     public ReciboHaberes(String _nombreEmpleado, String _direccionEmpleado, LocalDate _fechaEmision, double _sueldoBruto, double _sueldoNeto, List <Concepto> _desgloceConceptos) {
         this.nombreEmpleado = _nombreEmpleado;

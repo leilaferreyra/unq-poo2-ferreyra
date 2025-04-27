@@ -65,5 +65,4 @@ public abstract class Empleado {
     }
 
     protected abstract void generarDesgloceDeConceptos();
-
 }

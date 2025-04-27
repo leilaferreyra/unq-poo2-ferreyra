@@ -10,7 +10,6 @@ public class EmpleadoPermanente extends Empleado {
         this.cantHijos = _cantHijos;
         this.antiguedad = _antiguedad;
     }
-
     //sueldo bruto
     @Override
     public double sueldoBruto() {

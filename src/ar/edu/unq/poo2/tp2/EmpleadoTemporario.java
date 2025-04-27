@@ -11,6 +11,7 @@ public class EmpleadoTemporario extends Empleado{
         this.fechaFinDesignacion = _fechaFinDesignacion;
         this.cantHorasExtras = _cantHorasExtras;
     }
+    
     //sueldo bruto
     @Override
     public double sueldoBruto(){

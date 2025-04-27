@@ -8,7 +8,7 @@ public class Empresa {
     public String CUIT;
     public List<Empleado> empleados;
     public List<ReciboHaberes> recibosDeHaberes;
-
+    
     public Empresa(String _nombre, String _CUIT) {
         this.nombre = _nombre;
         this.CUIT = _CUIT;

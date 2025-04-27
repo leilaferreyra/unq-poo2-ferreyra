@@ -16,5 +16,4 @@ public class Concepto {
     public double getMonto() {
         return monto;
     }
-
 }

@@ -44,5 +44,4 @@ public class EmpleadoContratado extends Empleado {
         getConceptos().add(new Concepto ("Descuento Obra social", this.retencionObraSocial()));
         getConceptos().add(new Concepto ("Descuento Jubilación", this.retencionAportesJubilatorios()));
     }
-
 }
